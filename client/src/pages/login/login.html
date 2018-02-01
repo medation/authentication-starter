@@ -1,0 +1,41 @@
+<ion-content padding class="no-scroll">
+
+  <div class="title">Connection</div>
+
+  <div padding>
+    <form #form="ngForm" (ngSubmit)="login(form.value)" novalidate>
+      
+        <ion-item>
+          <ion-input type="text" name="username" ngModel required #username="ngModel"
+                    [class.invalid]="username.errors && username.dirty"
+                    placeholder="Nom d'utilisateur"></ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="username.errors?.required && username.dirty">
+          Vous devez entrer un nom d'utilisateur
+        </ion-item>
+
+        <ion-item>
+          <ion-input type="password" name="password" ngModel required #password="ngModel"
+                    [class.invalid]="password.errors && password.dirty"
+                    placeholder="Mot de passe"></ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="password.errors?.required && password.dirty">
+          Vous devez entrer un mot de passe
+        </ion-item>
+
+        <div padding>
+          <button ion-button color="primary" block type="submit" [disabled]="!form.valid">Login</button>
+        </div>
+
+      
+    </form>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="footer">
+    <div (click)="signup()">
+      <span>Pas encore de compte ? <strong>Inscrivez-vous dès maintenant</strong>.</span>
+    </div>
+  </ion-toolbar>
+</ion-footer>
